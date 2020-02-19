@@ -1,0 +1,292 @@
+#N canvas 0 0 1334 658 10;
+#X declare -lib zexy;
+#X declare -lib zexy;
+#X declare -lib zexy;
+#X declare -lib zexy;
+#X declare -lib mrpeach;
+#X obj 31 405 s reproducir;
+#X obj 31 435 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 30 493 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 31 460 s detener;
+#X obj 30 515 s reiniciar;
+#X obj 8 -125 cnv 15 838 76 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#X text 272 -121 UNTREF - Universidad Nacional de Tres de Febrero;
+#X text 352 -101 Artes Electronicas;
+#X text 345 -80 Laboratorio 3 - 2019;
+#X obj 99 538 catch~ master;
+#X obj 46 806 output~;
+#X obj 256 257 sonido 02.Vidala_Dolorosa.wav;
+#X obj 256 475 sonido 05.Pastoral_india.wav;
+#X obj 256 872 sonido 06.La_paloma_enamorada.wav;
+#X obj 256 678 sonido 14.Triste_no.wav;
+#X obj 34 206 hsl 128 15 -1 2 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X text 909 106 jugar con random \, que el cambio sea escalar \, que
+se cambien con un offset \, que se pongan en un valor que ya presetie
+;
+#X obj 51 241 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+10 -262144 -1 -1 0 256 0;
+#X text 912 68 para hacer condicionales que eligan el track que se
+reproduce;
+#X obj 914 202 expr if($f1 >= 0 && $f1 < 0.1 \, 1 \, 0);
+#X obj 913 146 random;
+#X obj 914 173 mod 1;
+#N canvas 0 0 1366 695 receptor 0;
+#X obj 45 67 udpreceive 9001;
+#X obj 44 103 unpackOSC;
+#X obj 42 188 nbx 3 16 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+12 -262144 -1 -1 0 256 0;
+#X obj 43 144 routeOSC /velocidad;
+#X obj 176 146 routeOSC /voxes;
+#X obj 237 188 nbx 3 16 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+12 -262144 -1 -1 0 256 0;
+#X obj 114 323 nbx 3 16 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+12 -262144 -1 -1 0 256 0;
+#X obj 252 329 nbx 3 16 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+12 -262144 -1 -1 0 256 0;
+#X obj 386 328 nbx 3 16 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+12 -262144 -1 -1 0 256 0;
+#X obj 252 266 routeOSC /location;
+#X obj 386 267 routeOSC /length;
+#X obj 344 149 routeOSC /end;
+#X obj 114 261 routeOSC /activa;
+#X obj 353 189 nbx 3 16 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+12 -262144 -1 -1 0 256 0;
+#X obj 28 31 declare -lib mrpeach;
+#X obj 40 210 * 0.01;
+#X obj 40 257 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+10 -262144 -1 -1 0 256 0;
+#X obj 17 302 s velocidadosc;
+#X obj 237 377 s voces;
+#X connect 0 0 1 0;
+#X connect 1 0 3 0;
+#X connect 1 0 4 0;
+#X connect 1 0 9 0;
+#X connect 1 0 11 0;
+#X connect 1 0 12 0;
+#X connect 2 0 15 0;
+#X connect 3 0 2 0;
+#X connect 3 0 10 0;
+#X connect 4 0 5 0;
+#X connect 5 0 18 0;
+#X connect 9 0 7 0;
+#X connect 10 0 8 0;
+#X connect 11 0 13 0;
+#X connect 12 0 6 0;
+#X connect 15 0 16 0;
+#X connect 15 0 17 0;
+#X restore 9 -26 pd receptor;
+#X obj 825 21 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+10 -262144 -1 -1 0 256 0;
+#X obj 31 124 random 100;
+#X obj 31 150 * 0.01;
+#X obj 31 181 + 0.7;
+#X obj 31 97 metro 2000;
+#X obj 31 71 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+;
+#X obj 986 453 r reproducir;
+#X obj 31 324 random 100;
+#X obj 31 351 * 0.01;
+#X obj 31 303 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X floatatom 40 385 5 0 0 0 - - -, f 5;
+#X obj 986 488 expr if($f1 >= 0 && $f1 < 0.25 \, 1 \, 0);
+#X obj 986 523 sel 1;
+#X obj 272 382 sel 1;
+#X obj 986 547 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 703 -10 r numDeTrad;
+#X obj 792 54 gate 4;
+#X obj 792 149 s velRep1;
+#X obj 803 127 s velRep2;
+#X obj 814 103 s velRep3;
+#X obj 825 83 s velRep4;
+#X obj 992 404 expr if($f1 >= 0 && $f1 < 0.25 \, 1 \, 0);
+#X obj 914 227 vsl 15 128 0 1 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X floatatom 914 363 5 0 0 0 - - -, f 5;
+#X obj 914 385 * 2;
+#X obj 914 408 - 1;
+#X floatatom 914 431 5 0 0 0 - - -, f 5;
+#N canvas 0 50 450 250 (subpatch) 0;
+#X array array1 5 float 3 black black;
+#A 0 0.342853 0.671421 -0.599994 -0.242859 0.399996;
+#X coords 0 1 5 -1 200 140 1;
+#X restore 994 252 graph;
+#X msg 272 409 1;
+#X msg 309 408 0;
+#X obj 256 447 *;
+#X obj 629 -8 metro 10000;
+#X obj 627 20 cup;
+#X obj 629 -39 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 639 49 mod 4;
+#X obj 31 273 s preVelocidad;
+#X obj 825 -15 r preVelocidad;
+#X msg 252 627 1;
+#X msg 289 626 0;
+#X obj 256 657 *;
+#X msg 271 823 1;
+#X msg 308 822 0;
+#X obj 256 845 *;
+#X msg 280 191 1;
+#X msg 317 190 0;
+#X obj 284 113 r numDeTrad;
+#X obj 264 229 *;
+#X floatatom 640 77 5 0 0 0 - - -, f 5;
+#X obj 178 178 r velRep;
+#X obj 280 164 sel 0;
+#X obj 252 600 sel 2;
+#X obj 271 796 sel 3;
+#X obj 179 141 s velRep;
+#X obj 250 202 f;
+#X obj 244 415 f;
+#X obj 221 632 f;
+#X obj 204 787 f;
+#X obj 263 137 t b f;
+#X obj 240 331 r numDeTrad;
+#X obj 240 355 t b f;
+#X obj 233 578 t b f;
+#X obj 238 771 t b f;
+#X floatatom 311 138 5 0 0 0 - - -, f 5;
+#X msg 179 105 -10;
+#X floatatom 206 234 5 0 0 0 - - -, f 5;
+#X floatatom 217 869 5 0 0 0 - - -, f 5;
+#X obj 427 82 + 2;
+#X obj 427 15 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 427 105 s segTrack;
+#X obj 233 553 r segTrack;
+#X obj 239 751 r segTrack;
+#X obj 370 108 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+10 -262144 -1 -1 3 256 0;
+#X obj 427 62 random 2;
+#X obj 427 41 metro 5000;
+#X obj 183 553 * -1;
+#X obj 120 363 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+10 -262144 -1 -1 0.51 256 0;
+#X obj 130 313 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+10 -262144 -1 -1 -0.51 256 0;
+#X obj 68 763 freeverb~;
+#X msg 22 708 wet $f1;
+#X obj 22 657 r reverb;
+#X obj 22 682 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+10 -262144 -1 -1 0.21 256 0;
+#X msg 123 725 freeze \$1;
+#X obj 124 676 r freverb;
+#X obj 124 701 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+10 -262144 -1 -1 1 256 0;
+#X msg 113 633 width \$1;
+#X obj 113 576 r wreverb;
+#X obj 113 605 nbx 5 13 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+10 -262144 -1 -1 0.357143 256 0;
+#X msg 22 605 roomsize \$1;
+#X obj 22 554 r rzreverb;
+#X obj 22 579 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+10 -262144 -1 -1 0.795414 256 0;
+#X connect 1 0 3 0;
+#X connect 2 0 4 0;
+#X connect 9 0 100 0;
+#X connect 9 0 100 1;
+#X connect 15 0 17 0;
+#X connect 15 0 58 0;
+#X connect 23 0 39 1;
+#X connect 24 0 25 0;
+#X connect 25 0 26 0;
+#X connect 26 0 15 0;
+#X connect 27 0 24 0;
+#X connect 28 0 27 0;
+#X connect 30 0 31 0;
+#X connect 31 0 0 0;
+#X connect 31 0 33 0;
+#X connect 32 0 30 0;
+#X connect 34 0 35 0;
+#X connect 35 0 37 0;
+#X connect 36 0 51 0;
+#X connect 36 1 52 0;
+#X connect 38 0 39 0;
+#X connect 39 0 40 0;
+#X connect 39 1 41 0;
+#X connect 39 2 42 0;
+#X connect 39 3 43 0;
+#X connect 45 0 46 0;
+#X connect 46 0 47 0;
+#X connect 47 0 48 0;
+#X connect 48 0 49 0;
+#X connect 51 0 53 1;
+#X connect 52 0 53 1;
+#X connect 53 0 12 0;
+#X connect 54 0 55 0;
+#X connect 55 0 57 0;
+#X connect 56 0 54 0;
+#X connect 57 0 39 0;
+#X connect 57 0 70 0;
+#X connect 59 0 23 0;
+#X connect 60 0 62 1;
+#X connect 61 0 62 1;
+#X connect 62 0 14 0;
+#X connect 63 0 65 1;
+#X connect 64 0 65 1;
+#X connect 65 0 88 0;
+#X connect 65 0 13 0;
+#X connect 66 0 69 1;
+#X connect 67 0 69 1;
+#X connect 68 0 80 0;
+#X connect 68 0 85 0;
+#X connect 69 0 11 0;
+#X connect 71 0 76 0;
+#X connect 71 0 77 0;
+#X connect 71 0 87 0;
+#X connect 71 0 97 0;
+#X connect 71 0 99 0;
+#X connect 72 0 66 0;
+#X connect 72 1 67 0;
+#X connect 73 0 60 0;
+#X connect 73 1 61 0;
+#X connect 74 0 63 0;
+#X connect 74 1 64 0;
+#X connect 76 0 69 0;
+#X connect 77 0 53 0;
+#X connect 78 0 62 0;
+#X connect 79 0 65 0;
+#X connect 80 0 76 0;
+#X connect 80 1 72 0;
+#X connect 81 0 82 0;
+#X connect 82 0 77 0;
+#X connect 82 1 36 0;
+#X connect 83 0 78 0;
+#X connect 83 1 73 0;
+#X connect 84 0 79 0;
+#X connect 84 1 74 0;
+#X connect 86 0 75 0;
+#X connect 89 0 91 0;
+#X connect 89 0 94 0;
+#X connect 90 0 96 0;
+#X connect 92 0 83 0;
+#X connect 93 0 84 0;
+#X connect 95 0 89 0;
+#X connect 96 0 95 0;
+#X connect 97 0 78 0;
+#X connect 97 0 79 0;
+#X connect 97 0 98 0;
+#X connect 100 0 10 0;
+#X connect 100 1 10 1;
+#X connect 101 0 100 1;
+#X connect 101 0 100 0;
+#X connect 102 0 103 0;
+#X connect 103 0 101 0;
+#X connect 104 0 100 1;
+#X connect 105 0 106 0;
+#X connect 106 0 104 0;
+#X connect 107 0 100 0;
+#X connect 107 0 100 1;
+#X connect 108 0 109 0;
+#X connect 109 0 107 0;
+#X connect 110 0 100 0;
+#X connect 110 0 100 1;
+#X connect 111 0 112 0;
+#X connect 112 0 110 0;
+#X coords 0 658 1 657 600 150 0;
